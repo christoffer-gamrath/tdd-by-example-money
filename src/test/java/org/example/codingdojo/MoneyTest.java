@@ -25,6 +25,9 @@ public class MoneyTest {
         assertFalse(new Dollar(5).equals(new Dollar(6)));
     }
 
+    private static class Money {
+    }
+
     private static class Dollar {
         private final int amount;
 
