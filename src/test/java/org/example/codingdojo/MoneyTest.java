@@ -58,7 +58,7 @@ public class MoneyTest {
     }
 
     private static class Dollar extends Money {
-        private final String currency;
+        protected final String currency;
 
         public Dollar(int amount) {
             currency = "USD";
@@ -76,7 +76,7 @@ public class MoneyTest {
     }
 
     private static class Franc extends Money {
-        private final String currency;
+        protected final String currency;
 
         public Franc(int amount) {
             currency = "CHF";
