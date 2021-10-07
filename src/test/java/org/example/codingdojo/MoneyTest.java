@@ -15,18 +15,22 @@ public class MoneyTest {
     @Test
     void francMultiplication() {
         final var amount = 5;
-        final var five = new Franc(amount);
-        assertEquals(new Franc(10), five.times(2));
-        assertEquals(new Franc(15), five.times(3));
+        final var five = franc(amount);
+        assertEquals(franc(10), five.times(2));
+        assertEquals(franc(15), five.times(3));
+    }
+
+    private Franc franc(int amount) {
+        return new Franc(amount);
     }
 
     @Test
     void equality() {
         assertTrue(Money.dollar(5).equals(Money.dollar(5)));
         assertFalse(Money.dollar(5).equals(Money.dollar(6)));
-        assertTrue(new Franc(5).equals(new Franc(5)));
-        assertFalse(new Franc(5).equals(new Franc(6)));
-        assertFalse(new Franc(5).equals(Money.dollar(5)));
+        assertTrue(franc(5).equals(franc(5)));
+        assertFalse(franc(5).equals(franc(6)));
+        assertFalse(franc(5).equals(Money.dollar(5)));
     }
 
     private static abstract class Money {
