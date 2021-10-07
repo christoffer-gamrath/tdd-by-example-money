@@ -39,6 +39,11 @@ public class MoneyTest {
         protected int amount;
         protected String currency;
 
+        public Money(int amount, String currency) {
+            this.currency = currency;
+            this.amount = amount;
+        }
+
         public static Money dollar(int amount) {
             return new Dollar(amount, "USD");
         }
@@ -62,8 +67,7 @@ public class MoneyTest {
 
     private static class Dollar extends Money {
         public Dollar(int amount, String currency) {
-            this.currency = currency;
-            this.amount = amount;
+            super(amount, currency);
         }
 
         public Money times(int multiplier) {
@@ -73,8 +77,7 @@ public class MoneyTest {
 
     private static class Franc extends Money {
         public Franc(int amount, String currency) {
-            this.currency = currency;
-            this.amount = amount;
+            super(amount, currency);
         }
 
         public Money times(int multiplier) {
