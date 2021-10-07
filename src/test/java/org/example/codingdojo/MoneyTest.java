@@ -29,6 +29,12 @@ public class MoneyTest {
         assertFalse(Money.franc(5).equals(Money.dollar(5)));
     }
 
+    @Test
+    void currency() {
+        assertEquals("USD", Money.dollar(1).currency());
+        assertEquals("CHF", Money.franc(1).currency());
+    }
+
     private static abstract class Money {
         protected int amount;
 
@@ -42,6 +48,8 @@ public class MoneyTest {
 
         public abstract Money times(int multiplier);
 
+        public abstract String currency();
+
         @Override
         public boolean equals(Object obj) {
             final var money = (Money) obj;
@@ -50,13 +58,17 @@ public class MoneyTest {
     }
 
     private static class Dollar extends Money {
-
         public Dollar(int amount) {
             this.amount = amount;
         }
 
         public Money times(int multiplier) {
             return new Dollar(amount * multiplier);
+        }
+
+        @Override
+        public String currency() {
+            return "USD";
         }
     }
 
@@ -67,6 +79,11 @@ public class MoneyTest {
 
         public Money times(int multiplier) {
             return new Franc(amount * multiplier);
+        }
+
+        @Override
+        public String currency() {
+            return "CHF";
         }
     }
 }
