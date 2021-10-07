@@ -41,7 +41,7 @@ public class MoneyTest {
 
         @Override
         public boolean equals(Object obj) {
-            final var dollar = (Dollar) obj;
+            final Money dollar = (Dollar) obj;
             return amount == dollar.amount;
         }
     }
