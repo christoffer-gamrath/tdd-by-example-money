@@ -58,7 +58,10 @@ public class MoneyTest {
     }
 
     private static class Dollar extends Money {
+        private final String currency;
+
         public Dollar(int amount) {
+            currency = "USD";
             this.amount = amount;
         }
 
@@ -68,7 +71,7 @@ public class MoneyTest {
 
         @Override
         public String currency() {
-            return "USD";
+            return currency;
         }
     }
 
