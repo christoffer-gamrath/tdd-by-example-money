@@ -2,8 +2,7 @@ package org.example.codingdojo;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MoneyTest {
     @Test
@@ -18,6 +17,7 @@ public class MoneyTest {
     @Test
     void equality() {
         assertTrue(new Dollar(5).equals(new Dollar(5)));
+        assertFalse(new Dollar(5).equals(new Dollar(6)));
     }
 
     private static class Dollar {
@@ -33,7 +33,8 @@ public class MoneyTest {
 
         @Override
         public boolean equals(Object obj) {
-            return true;
+            final var dollar = (Dollar) obj;
+            return amount == dollar.amount;
         }
     }
 }
