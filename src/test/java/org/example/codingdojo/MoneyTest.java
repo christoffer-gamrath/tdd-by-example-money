@@ -29,7 +29,7 @@ public class MoneyTest {
     }
 
     private static class Dollar extends Money {
-        private final int amount;
+        private int amount;
 
         public Dollar(int amount) {
             this.amount = amount;
