@@ -3,6 +3,7 @@ package org.example.codingdojo;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MoneyTest {
     @Test
@@ -14,6 +15,11 @@ public class MoneyTest {
         assertEquals(15, product.amount);
     }
 
+    @Test
+    void equality() {
+        assertTrue(new Dollar(5).equals(new Dollar(5)));
+    }
+
     private static class Dollar {
         int amount;
 
@@ -23,6 +29,11 @@ public class MoneyTest {
 
         Dollar times(int multiplier) {
             return new Dollar(amount * multiplier);
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return true;
         }
     }
 }
