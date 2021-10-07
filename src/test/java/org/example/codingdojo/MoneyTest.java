@@ -40,7 +40,7 @@ public class MoneyTest {
         protected String currency;
 
         public static Money dollar(int amount) {
-            return new Dollar(amount);
+            return new Dollar(amount, "USD");
         }
 
         public static Money franc(int amount) {
@@ -61,13 +61,13 @@ public class MoneyTest {
     }
 
     private static class Dollar extends Money {
-        public Dollar(int amount) {
-            currency = "USD";
+        public Dollar(int amount, String currency) {
+            this.currency = currency;
             this.amount = amount;
         }
 
         public Money times(int multiplier) {
-            return new Dollar(amount * multiplier);
+            return new Dollar(amount * multiplier, "USD");
         }
     }
 
