@@ -14,7 +14,8 @@ public class MoneyTest {
 
     @Test
     void francMultiplication() {
-        final var five = new Franc(5);
+        final var amount = 5;
+        final var five = new Franc(amount);
         assertEquals(new Franc(10), five.times(2));
         assertEquals(new Franc(15), five.times(3));
     }
