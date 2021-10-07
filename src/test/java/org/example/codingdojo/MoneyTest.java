@@ -27,6 +27,12 @@ public class MoneyTest {
 
     private static class Money {
         protected int amount;
+
+        @Override
+        public boolean equals(Object obj) {
+            final var money = (Money) obj;
+            return amount == money.amount;
+        }
     }
 
     private static class Dollar extends Money {
@@ -37,12 +43,6 @@ public class MoneyTest {
 
         public Dollar times(int multiplier) {
             return new Dollar(amount * multiplier);
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            final var money = (Money) obj;
-            return amount == money.amount;
         }
     }
 
