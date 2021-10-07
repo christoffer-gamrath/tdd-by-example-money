@@ -73,7 +73,10 @@ public class MoneyTest {
     }
 
     private static class Franc extends Money {
+        private final String currency;
+
         public Franc(int amount) {
+            currency = "CHF";
             this.amount = amount;
         }
 
@@ -83,7 +86,7 @@ public class MoneyTest {
 
         @Override
         public String currency() {
-            return "CHF";
+            return currency;
         }
     }
 }
