@@ -8,8 +8,10 @@ public class MoneyTest {
     @Test
     void multiplication() {
         final var five = new Dollar(5);
-        five.times(2);
-        assertEquals(10, five.amount);
+        var product = five.times(2);
+        assertEquals(10, product.amount);
+        product = five.times(3);
+        assertEquals(15, product.amount);
     }
 
     private static class Dollar {
@@ -19,8 +21,8 @@ public class MoneyTest {
             this.amount = amount;
         }
 
-        void times(int multiplier) {
-            amount *= multiplier;
+        Dollar times(int multiplier) {
+            return new Dollar(amount * multiplier);
         }
     }
 }
