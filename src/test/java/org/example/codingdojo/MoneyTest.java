@@ -37,6 +37,7 @@ public class MoneyTest {
 
     private static abstract class Money {
         protected int amount;
+        protected String currency;
 
         public static Money dollar(int amount) {
             return new Dollar(amount);
@@ -58,8 +59,6 @@ public class MoneyTest {
     }
 
     private static class Dollar extends Money {
-        protected String currency;
-
         public Dollar(int amount) {
             currency = "USD";
             this.amount = amount;
@@ -76,8 +75,6 @@ public class MoneyTest {
     }
 
     private static class Franc extends Money {
-        protected String currency;
-
         public Franc(int amount) {
             currency = "CHF";
             this.amount = amount;
