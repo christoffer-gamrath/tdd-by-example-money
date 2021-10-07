@@ -20,7 +20,7 @@ public class MoneyTest {
         assertEquals(franc(15), five.times(3));
     }
 
-    private Franc franc(int amount) {
+    private static Franc franc(int amount) {
         return new Franc(amount);
     }
 
