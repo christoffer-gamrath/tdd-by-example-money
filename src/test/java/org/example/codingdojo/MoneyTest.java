@@ -8,8 +8,7 @@ public class MoneyTest {
     @Test
     void multiplication() {
         final var five = new Dollar(5);
-        var product = five.times(2);
-        assertEquals(new Dollar(10), product);
+        assertEquals(new Dollar(10), five.times(2));
         assertEquals(new Dollar(15), five.times(3));
     }
 
