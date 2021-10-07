@@ -25,7 +25,7 @@ public class MoneyTest {
             this.amount = amount;
         }
 
-        Dollar times(int multiplier) {
+        public Dollar times(int multiplier) {
             return new Dollar(amount * multiplier);
         }
 
