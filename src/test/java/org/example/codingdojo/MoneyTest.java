@@ -49,7 +49,9 @@ public class MoneyTest {
 
         public abstract Money times(int multiplier);
 
-        public abstract String currency();
+        public String currency() {
+            return currency;
+        }
 
         @Override
         public boolean equals(Object obj) {
@@ -67,11 +69,6 @@ public class MoneyTest {
         public Money times(int multiplier) {
             return new Dollar(amount * multiplier);
         }
-
-        @Override
-        public String currency() {
-            return currency;
-        }
     }
 
     private static class Franc extends Money {
@@ -82,11 +79,6 @@ public class MoneyTest {
 
         public Money times(int multiplier) {
             return new Franc(amount * multiplier);
-        }
-
-        @Override
-        public String currency() {
-            return currency;
         }
     }
 }
