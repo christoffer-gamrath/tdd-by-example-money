@@ -44,7 +44,7 @@ public class MoneyTest {
         }
 
         public static Money franc(int amount) {
-            return new Franc(amount);
+            return new Franc(amount, "CHF");
         }
 
         public abstract Money times(int multiplier);
@@ -72,13 +72,13 @@ public class MoneyTest {
     }
 
     private static class Franc extends Money {
-        public Franc(int amount) {
-            currency = "CHF";
+        public Franc(int amount, String currency) {
+            this.currency = currency;
             this.amount = amount;
         }
 
         public Money times(int multiplier) {
-            return new Franc(amount * multiplier);
+            return new Franc(amount * multiplier, "CHF");
         }
     }
 }
