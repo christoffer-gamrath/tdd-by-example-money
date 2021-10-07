@@ -19,7 +19,7 @@ public class MoneyTest {
         }
 
         void times(int multiplier) {
-            amount = 5 * 2;
+            amount = 5 * multiplier;
         }
     }
 }
