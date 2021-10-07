@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MoneyTest {
     @Test
     void multiplication() {
-        final Dollar five = Money.dollar(5);
+        final Money five = Money.dollar(5);
         assertEquals(new Dollar(10), five.times(2));
         assertEquals(new Dollar(15), five.times(3));
     }
@@ -28,12 +28,14 @@ public class MoneyTest {
         assertFalse(new Franc(5).equals(new Dollar(5)));
     }
 
-    private static class Money {
+    private static abstract class Money {
         protected int amount;
 
         public static Dollar dollar(int amount) {
             return new Dollar(amount);
         }
+
+        public abstract Money times(int multiplier);
 
         @Override
         public boolean equals(Object obj) {
