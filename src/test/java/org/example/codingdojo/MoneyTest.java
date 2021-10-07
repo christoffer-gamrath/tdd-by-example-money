@@ -28,7 +28,7 @@ public class MoneyTest {
     private static class Money {
     }
 
-    private static class Dollar {
+    private static class Dollar extends Money {
         private final int amount;
 
         public Dollar(int amount) {
