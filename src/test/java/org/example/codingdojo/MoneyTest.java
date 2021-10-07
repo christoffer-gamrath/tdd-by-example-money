@@ -26,10 +26,10 @@ public class MoneyTest {
     }
 
     private static class Money {
+        protected int amount;
     }
 
     private static class Dollar extends Money {
-        protected int amount;
 
         public Dollar(int amount) {
             this.amount = amount;
