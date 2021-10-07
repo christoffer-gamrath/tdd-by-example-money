@@ -19,7 +19,7 @@ public class MoneyTest {
     }
 
     private static class Dollar {
-        private int amount;
+        private final int amount;
 
         public Dollar(int amount) {
             this.amount = amount;
