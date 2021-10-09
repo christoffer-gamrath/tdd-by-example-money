@@ -93,14 +93,8 @@ public class MoneyTest {
 
         public Money reduce(Bank bank, String to) {
             final var currency = this.currency;
-            final var rate = rate(currency, to);
+            final var rate = Bank.rate(currency, to);
             return new Money(amount / rate, to);
-        }
-
-        private static int rate(String currency, String to) {
-            return (currency.equals("CHF") && to.equals("USD"))
-                ? 2
-                : 1;
         }
 
         public String currency() {
@@ -129,6 +123,12 @@ public class MoneyTest {
         }
 
         void addRate(String x, String y, int z) {
+        }
+
+        public static int rate(String currency, String to) {
+            return (currency.equals("CHF") && to.equals("USD"))
+                ? 2
+                : 1;
         }
     }
 
