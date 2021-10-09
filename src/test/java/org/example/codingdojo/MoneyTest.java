@@ -105,7 +105,7 @@ public class MoneyTest {
             return new Money(amount * multiplier, currency);
         }
 
-        public Expression plus(Money addend) {
+        public Expression plus(Expression addend) {
             return new Sum(this, addend);
         }
 
