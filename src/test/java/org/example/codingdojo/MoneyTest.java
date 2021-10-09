@@ -104,6 +104,7 @@ public class MoneyTest {
     }
 
     private interface Expression {
+        Money reduce(String to);
     }
 
     private static class Bank {
