@@ -95,6 +95,17 @@ public class MoneyTest {
         assertEquals(Money.dollar(15), result);
     }
 
+    @Test
+    void sumTimes() {
+        final var fiveBucks = Money.dollar(5);
+        final var tenFrancs = Money.franc(10);
+        final var bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        final Expression sum = new Sum(fiveBucks, tenFrancs).times(2);
+        final var result = bank.reduce(sum, "USD");
+        assertEquals(Money.dollar(20), result);
+    }
+
     private static class Money implements Expression {
         protected int amount;
         protected String currency;
@@ -145,6 +156,8 @@ public class MoneyTest {
         Money reduce(Bank bank, String to);
 
         Expression plus(Expression addend);
+
+        Expression times(int multiplier);
     }
 
     private static class Bank {
@@ -183,6 +196,10 @@ public class MoneyTest {
         @Override
         public Expression plus(Expression addend) {
             return new Sum(this, addend);
+        }
+
+        public Expression times(int multiplier) {
+            return new Sum(augend.times(multiplier), addend.times(multiplier));
         }
     }
 
