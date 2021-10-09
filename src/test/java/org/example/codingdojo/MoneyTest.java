@@ -93,7 +93,7 @@ public class MoneyTest {
 
         public Money reduce(Bank bank, String to) {
             final var currency = this.currency;
-            final var rate = Bank.rate(currency, to);
+            final var rate = bank.rate(currency, to);
             return new Money(amount / rate, to);
         }
 
