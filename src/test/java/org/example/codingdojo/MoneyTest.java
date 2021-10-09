@@ -125,7 +125,7 @@ public class MoneyTest {
         void addRate(String x, String y, int z) {
         }
 
-        public static int rate(String currency, String to) {
+        public int rate(String currency, String to) {
             return (currency.equals("CHF") && to.equals("USD"))
                 ? 2
                 : 1;
