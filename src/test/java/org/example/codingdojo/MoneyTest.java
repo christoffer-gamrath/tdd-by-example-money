@@ -91,7 +91,7 @@ public class MoneyTest {
             return new Sum(this, addend);
         }
 
-        public Money reduce(String to) {
+        public Money reduce(Bank bank, String to) {
             final var rate = (currency.equals("CHF") && to.equals("USD"))
                 ? 2
                 : 1;
@@ -115,12 +115,12 @@ public class MoneyTest {
     }
 
     private interface Expression {
-        Money reduce(String to);
+        Money reduce(Bank bank, String to);
     }
 
     private static class Bank {
         public Money reduce(Expression source, String to) {
-            return source.reduce(to);
+            return source.reduce(this, to);
         }
 
         void addRate(String x, String y, int z) {
@@ -136,7 +136,7 @@ public class MoneyTest {
             this.addend = addend;
         }
 
-        public Money reduce(String to) {
+        public Money reduce(Bank bank, String to) {
             final var amount = augend.amount + addend.amount;
             return new Money(amount, to);
         }
