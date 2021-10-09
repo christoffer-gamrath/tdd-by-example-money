@@ -25,6 +25,12 @@ public class MoneyTest {
         assertEquals("CHF", Money.franc(1).currency());
     }
 
+    @Test
+    void simpleAddition() {
+        final Money sum = Money.dollar(5).plus(Money.dollar(5));
+        assertEquals(Money.dollar(10), sum);
+    }
+
     private static class Money {
         protected int amount;
         protected String currency;
@@ -44,6 +50,10 @@ public class MoneyTest {
 
         public Money times(int multiplier) {
             return new Money(amount * multiplier, currency);
+        }
+
+        public Money plus(Money addend) {
+            return new Money(amount + addend.amount, currency);
         }
 
         public String currency() {
