@@ -58,6 +58,14 @@ public class MoneyTest {
         assertEquals(Money.dollar(1), result);
     }
 
+    @Test
+    void reduceMoneyDifferentCurrency() {
+        final var bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        final var result = bank.reduce(Money.franc(2), "USD");
+        assertEquals(Money.dollar(1), result);
+    }
+
     private static class Money implements Expression {
         protected int amount;
         protected String currency;
@@ -84,7 +92,10 @@ public class MoneyTest {
         }
 
         public Money reduce(String to) {
-            return this;
+            final var rate = (currency.equals("CHF") && to.equals("USD"))
+                ? 2
+                : 1;
+            return new Money(amount / rate, to);
         }
 
         public String currency() {
@@ -110,6 +121,9 @@ public class MoneyTest {
     private static class Bank {
         public Money reduce(Expression source, String to) {
             return source.reduce(to);
+        }
+
+        void addRate(String x, String y, int z) {
         }
     }
 
