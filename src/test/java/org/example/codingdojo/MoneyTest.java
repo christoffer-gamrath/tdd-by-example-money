@@ -97,7 +97,7 @@ public class MoneyTest {
             return new Money(amount / rate, to);
         }
 
-        private int rate(String currency, String to) {
+        private static int rate(String currency, String to) {
             return (currency.equals("CHF") && to.equals("USD"))
                 ? 2
                 : 1;
