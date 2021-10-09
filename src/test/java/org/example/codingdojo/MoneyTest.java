@@ -83,6 +83,10 @@ public class MoneyTest {
             return new Sum(this, addend);
         }
 
+        public Money reduce(String to) {
+            return this;
+        }
+
         public String currency() {
             return currency;
         }
@@ -105,7 +109,7 @@ public class MoneyTest {
     private static class Bank {
         public Money reduce(Expression source, String to) {
             if (source instanceof Money) {
-                return (Money) source;
+                return ((Money) source).reduce(to);
             }
             final var sum = (Sum) source;
             return sum.reduce(to);
