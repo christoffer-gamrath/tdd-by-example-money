@@ -35,7 +35,7 @@ public class MoneyTest {
         assertEquals("CHF", Money.franc(1).currency());
     }
 
-    private static class Money {
+    private static abstract class Money {
         protected int amount;
         protected String currency;
 
@@ -52,9 +52,7 @@ public class MoneyTest {
             return new Franc(amount, "CHF");
         }
 
-        public Money times(int multiplier) {
-            return null;
-        }
+        public abstract Money times(int multiplier);
 
         public String currency() {
             return currency;
@@ -64,11 +62,6 @@ public class MoneyTest {
         public boolean equals(Object obj) {
             final var money = (Money) obj;
             return amount == money.amount && getClass().equals(money.getClass());
-        }
-
-        @Override
-        public String toString() {
-            return amount + " " + currency;
         }
     }
 
@@ -88,7 +81,7 @@ public class MoneyTest {
         }
 
         public Money times(int multiplier) {
-            return new Money(amount * multiplier, currency);
+            return new Franc(amount * multiplier, currency);
         }
     }
 }
