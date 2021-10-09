@@ -106,12 +106,6 @@ public class MoneyTest {
         assertEquals(Money.dollar(20), result);
     }
 
-    @Test
-    void plusSameCurrencyReturnsMoney() {
-        final Expression sum = Money.dollar(1).plus(Money.dollar(1));
-        assertInstanceOf(Money.class, sum);
-    }
-
     private static class Money implements Expression {
         protected int amount;
         protected String currency;
