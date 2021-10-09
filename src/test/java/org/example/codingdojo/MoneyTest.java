@@ -58,7 +58,7 @@ public class MoneyTest {
         }
 
         public Money times(int multiplier) {
-            return null;
+            return new Money(amount * multiplier, currency);
         }
 
         public String currency() {
@@ -76,19 +76,11 @@ public class MoneyTest {
         public Dollar(int amount, String currency) {
             super(amount, currency);
         }
-
-        public Money times(int multiplier) {
-            return new Money(amount * multiplier, currency);
-        }
     }
 
     private static class Franc extends Money {
         public Franc(int amount, String currency) {
             super(amount, currency);
-        }
-
-        public Money times(int multiplier) {
-            return new Money(amount * multiplier, currency);
         }
     }
 }
