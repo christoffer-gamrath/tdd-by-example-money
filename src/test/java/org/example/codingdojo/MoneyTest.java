@@ -96,7 +96,7 @@ public class MoneyTest {
     }
 
     private static class Bank {
-        Money reduce(Expression source, String to) {
+        public Money reduce(Expression source, String to) {
             final var sum = (Sum) source;
             return sum.reduce(to);
         }
