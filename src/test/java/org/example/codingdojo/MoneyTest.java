@@ -2,6 +2,9 @@ package org.example.codingdojo;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MoneyTest {
@@ -66,6 +69,11 @@ public class MoneyTest {
         assertEquals(Money.dollar(1), result);
     }
 
+    @Test
+    void identityRate() {
+        assertEquals(1, new Bank().rate("USD", "USD"));
+    }
+
     private static class Money implements Expression {
         protected int amount;
         protected String currency;
@@ -117,17 +125,21 @@ public class MoneyTest {
     }
 
     private static class Bank {
+        private final Map<Pair, Integer> rates = new HashMap<>();
+
         public Money reduce(Expression source, String to) {
             return source.reduce(this, to);
         }
 
-        void addRate(String x, String y, int z) {
+        void addRate(String from, String to, int rate) {
+            rates.put(new Pair(from, to), rate);
         }
 
         public int rate(String currency, String to) {
-            return (currency.equals("CHF") && to.equals("USD"))
-                ? 2
-                : 1;
+            if (currency.equals(to)) {
+                return 1;
+            }
+            return rates.get(new Pair(currency, to));
         }
     }
 
