@@ -43,6 +43,14 @@ public class MoneyTest {
         assertEquals(five, sum.addend);
     }
 
+    @Test
+    void reduceSum() {
+        final Expression sum = new Sum(Money.dollar(3), Money.dollar(4));
+        final var bank = new Bank();
+        final Money result = bank.reduce(sum, "USD");
+        assertEquals(Money.dollar(7), result);
+    }
+
     private static class Money implements Expression {
         protected int amount;
         protected String currency;
@@ -89,7 +97,9 @@ public class MoneyTest {
 
     private static class Bank {
         Money reduce(Expression source, String to) {
-            return Money.dollar(10);
+            final var sum = (Sum) source;
+            final var amount = sum.augend.amount + sum.addend.amount;
+            return new Money(amount, to);
         }
     }
 
