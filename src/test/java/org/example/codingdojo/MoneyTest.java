@@ -27,11 +27,14 @@ public class MoneyTest {
 
     @Test
     void simpleAddition() {
-        final Money sum = Money.dollar(5).plus(Money.dollar(5));
-        assertEquals(Money.dollar(10), sum);
+        final var five = Money.dollar(5);
+        final var bank = new Bank();
+        final Expression sum = five.plus(five);
+        final Money reduced = bank.reduce(sum, "USD");
+        assertEquals(Money.dollar(10), reduced);
     }
 
-    private static class Money {
+    private static class Money implements Expression {
         protected int amount;
         protected String currency;
 
@@ -52,7 +55,7 @@ public class MoneyTest {
             return new Money(amount * multiplier, currency);
         }
 
-        public Money plus(Money addend) {
+        public Expression plus(Money addend) {
             return new Money(amount + addend.amount, currency);
         }
 
@@ -69,6 +72,15 @@ public class MoneyTest {
         @Override
         public String toString() {
             return amount + " " + currency;
+        }
+    }
+
+    private interface Expression {
+    }
+
+    private static class Bank {
+        Money reduce(Expression source, String to) {
+            return Money.dollar(10);
         }
     }
 }
