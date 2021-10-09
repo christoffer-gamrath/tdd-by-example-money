@@ -30,12 +30,17 @@ public class MoneyTest {
     }
 
     @Test
+    void differentClassEquality() {
+        assertTrue(new Money(10, "CHF").equals(new Franc(10, "CHF")));
+    }
+
+    @Test
     void currency() {
         assertEquals("USD", Money.dollar(1).currency());
         assertEquals("CHF", Money.franc(1).currency());
     }
 
-    private static abstract class Money {
+    private static class Money {
         protected int amount;
         protected String currency;
 
@@ -52,7 +57,9 @@ public class MoneyTest {
             return new Franc(amount, "CHF");
         }
 
-        public abstract Money times(int multiplier);
+        public Money times(int multiplier) {
+            return null;
+        }
 
         public String currency() {
             return currency;
@@ -61,7 +68,7 @@ public class MoneyTest {
         @Override
         public boolean equals(Object obj) {
             final var money = (Money) obj;
-            return amount == money.amount && getClass().equals(money.getClass());
+            return amount == money.amount && currency().equals(money.currency());
         }
     }
 
