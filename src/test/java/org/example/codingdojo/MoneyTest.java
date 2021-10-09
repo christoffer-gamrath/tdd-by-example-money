@@ -76,7 +76,7 @@ public class MoneyTest {
 
     @Test
     void mixedAddition() {
-        final Money fiveBucks = Money.dollar(5);
+        final Expression fiveBucks = Money.dollar(5);
         final Expression tenFrancs = Money.franc(10);
         final var bank = new Bank();
         bank.addRate("CHF", "USD", 2);
@@ -132,6 +132,8 @@ public class MoneyTest {
 
     private interface Expression {
         Money reduce(Bank bank, String to);
+
+        Expression plus(Expression addend);
     }
 
     private static class Bank {
@@ -165,6 +167,11 @@ public class MoneyTest {
         public Money reduce(Bank bank, String to) {
             final var amount = augend.reduce(bank, to).amount + addend.reduce(bank, to).amount;
             return new Money(amount, to);
+        }
+
+        @Override
+        public Expression plus(Expression addend) {
+            return null;
         }
     }
 
