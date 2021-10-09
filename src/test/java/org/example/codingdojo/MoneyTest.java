@@ -13,14 +13,6 @@ public class MoneyTest {
     }
 
     @Test
-    void francMultiplication() {
-        final var amount = 5;
-        final var five = Money.franc(amount);
-        assertEquals(Money.franc(10), five.times(2));
-        assertEquals(Money.franc(15), five.times(3));
-    }
-
-    @Test
     void equality() {
         assertTrue(Money.dollar(5).equals(Money.dollar(5)));
         assertFalse(Money.dollar(5).equals(Money.dollar(6)));
