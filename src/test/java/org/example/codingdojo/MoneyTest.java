@@ -84,6 +84,17 @@ public class MoneyTest {
         assertEquals(Money.dollar(10), result);
     }
 
+    @Test
+    void sumPlusMoney() {
+        final Expression fiveBucks = Money.dollar(5);
+        final Expression tenFrancs = Money.franc(10);
+        final var bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        final Expression sum = new Sum(fiveBucks, tenFrancs).plus(fiveBucks);
+        final Money result = sum.reduce(bank, "USD");
+        assertEquals(Money.dollar(15), result);
+    }
+
     private static class Money implements Expression {
         protected int amount;
         protected String currency;
@@ -171,7 +182,7 @@ public class MoneyTest {
 
         @Override
         public Expression plus(Expression addend) {
-            return null;
+            return new Sum(this, addend);
         }
     }
 
