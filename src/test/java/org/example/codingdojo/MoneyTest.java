@@ -54,7 +54,7 @@ public class MoneyTest {
         }
 
         public static Money franc(int amount) {
-            return new Franc(amount, "CHF");
+            return new Money(amount, "CHF");
         }
 
         public Money times(int multiplier) {
