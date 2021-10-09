@@ -70,6 +70,11 @@ public class MoneyTest {
             final var money = (Money) obj;
             return amount == money.amount && currency().equals(money.currency());
         }
+
+        @Override
+        public String toString() {
+            return amount + " " + currency;
+        }
     }
 
     private static class Dollar extends Money {
