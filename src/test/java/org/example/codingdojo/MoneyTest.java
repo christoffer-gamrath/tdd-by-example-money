@@ -98,8 +98,7 @@ public class MoneyTest {
     private static class Bank {
         Money reduce(Expression source, String to) {
             final var sum = (Sum) source;
-            final var amount = sum.augend.amount + sum.addend.amount;
-            return new Money(amount, to);
+            return sum.reduce(to);
         }
     }
 
@@ -110,6 +109,11 @@ public class MoneyTest {
         public Sum(Money augend, Money addend) {
             this.augend = augend;
             this.addend = addend;
+        }
+
+        public Money reduce(String to) {
+            final var amount = augend.amount + addend.amount;
+            return new Money(amount, to);
         }
     }
 }
