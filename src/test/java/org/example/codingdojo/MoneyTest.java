@@ -51,6 +51,13 @@ public class MoneyTest {
         assertEquals(Money.dollar(7), result);
     }
 
+    @Test
+    void reduceMoney() {
+        final var bank = new Bank();
+        final var result = bank.reduce(Money.dollar(1), "USD");
+        assertEquals(Money.dollar(1), result);
+    }
+
     private static class Money implements Expression {
         protected int amount;
         protected String currency;
@@ -97,6 +104,9 @@ public class MoneyTest {
 
     private static class Bank {
         public Money reduce(Expression source, String to) {
+            if (source instanceof Money) {
+                return (Money) source;
+            }
             final var sum = (Sum) source;
             return sum.reduce(to);
         }
