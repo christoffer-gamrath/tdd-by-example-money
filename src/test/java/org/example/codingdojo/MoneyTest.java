@@ -74,6 +74,16 @@ public class MoneyTest {
         assertEquals(1, new Bank().rate("USD", "USD"));
     }
 
+    @Test
+    void mixedAddition() {
+        final Money fiveBucks = Money.dollar(5);
+        final Money tenFrancs = Money.franc(10);
+        final var bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        final Money result = bank.reduce(fiveBucks.plus(tenFrancs), "USD");
+        assertEquals(Money.dollar(10), result);
+    }
+
     private static class Money implements Expression {
         protected int amount;
         protected String currency;
@@ -153,7 +163,7 @@ public class MoneyTest {
         }
 
         public Money reduce(Bank bank, String to) {
-            final var amount = augend.amount + addend.amount;
+            final var amount = augend.reduce(bank, to).amount + addend.reduce(bank, to).amount;
             return new Money(amount, to);
         }
     }
