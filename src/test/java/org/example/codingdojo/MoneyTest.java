@@ -77,12 +77,6 @@ public class MoneyTest {
         }
     }
 
-    private static class Dollar extends Money {
-        public Dollar(int amount, String currency) {
-            super(amount, currency);
-        }
-    }
-
     private static class Franc extends Money {
         public Franc(int amount, String currency) {
             super(amount, currency);
